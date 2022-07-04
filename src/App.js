@@ -9,6 +9,13 @@ export default function App(){
   const [dice,setDice] = React.useState(allNewDice())
   const [tenzies,setTenzies] = React.useState(false)
 
+  const [rolls,setRolls] = React.useState(0)
+  const [best,setBest] = React.useState(parseInt(localStorage.getItem("best")) || 0)
+
+  React.useEffect(()=> {
+    localStorage.setItem("best",best.toString());
+  }, [best])
+
   React.useEffect(() => {
     const allHeld = dice.every(die => die.isHeld);
     const firstValue = dice[0].value;
@@ -37,14 +44,20 @@ export default function App(){
   function rollDice(){
     if (tenzies){
       setTenzies(false)
-      setDice(allNewDice())
 
+      if (!best || rolls<best){
+        setBest(rolls)
+      }
+
+      setDice(allNewDice())
+      setRolls(0)
     } else {
     setDice(oldDice => oldDice.map(die=>{
       return die.isHeld ? 
         die : 
         generateNewDie()
     }))
+    setRolls(prevRoll => prevRoll +1)
   }
   }
 
@@ -72,6 +85,16 @@ export default function App(){
           {diceElements}
       </div>
       <button onClick={rollDice} className="roll-dice">{tenzies ? "New Game" : "Roll"}</button>
+      <div className="dice-stats">
+        <div className="rolls">
+          <p className="rolls-text">Rolls:</p>
+          <p className="rolls-text">{rolls}</p>
+        </div>
+        <div className="rolls">
+          <p className="rolls-text">Best:</p>
+          <p className="rolls-text">{best}</p>
+        </div>
+      </div>
     </main>
   )
 }
