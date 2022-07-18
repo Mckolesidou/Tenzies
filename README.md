@@ -36,18 +36,11 @@ Best scores are saved to local storage.</p>
 
 
 
-
-## Demo
-
-<img src="">
-
-
-
 ## Screenshots
 
-<img src="./public/tenzi1">
+<img src="./public/tenzi1.png">
 
-<img src="./public/tenzi2">
+<img src="./public/tenzi2.png">
 
 
 
