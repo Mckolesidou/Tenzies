@@ -4,6 +4,7 @@
   
   <h3>Roll until all dice are the same</h3>
 
+  <a href="https://tenziesgame22.netlify.app/"><h3>Try me!</h3></a>
 
 </div>
   
